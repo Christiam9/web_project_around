@@ -2,4 +2,4 @@
 
 Descripcion del proyecto: Página interactiva logrando editar nombre y descripcion del usuario con un popup; usando estructura HTML, CSS y JS. Usando metodologia BEM.
 
-enlace GitHub Pages:
+enlace GitHub Pages: https://github.com/Christiam9/web_project_around
