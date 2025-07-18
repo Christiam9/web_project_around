@@ -38,7 +38,7 @@
   font-size: 14px;
   color: #aaa;
 }
-.profile__add-btn {
+.profile__add_btn {
   width: 150px;
   height: 50px;
   background: url("../button/add-button.png") no-repeat center;
@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 
-.profile__edit-btn {
+.profile__edit_btn {
   width: 24px;
   height: 24px;
   background: url("../button/edit-button.png") no-repeat;
@@ -67,12 +67,12 @@
     align-items: center;
     gap: 8px;
   }
-  .profile__edit-btn {
+  .profile__edit_btn {
     width: 24px;
     height: 24px;
     margin-left: 8px;
   }
-  .profile__add-btn {
+  .profile__add_btn {
     width: 100%;
     max-width: 300px;
     height: 48px;
