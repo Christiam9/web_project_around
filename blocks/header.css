@@ -16,7 +16,7 @@
   color: #ccc;
 }
 
-@media screen and (min-widht: 320px) and (max-width: 600px) {
+@media screen and (min-width: 320px) and (max-width: 600px) {
   .header {
     padding: 20px 16px;
     justify-content: center;

@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-@media screen and (min-widht: 320px) and (max-width: 600px) {
+@media screen and (min-width: 320px) and (max-width: 600px) {
   .gallery__list {
     display: grid;
     grid-template-columns: 1fr;

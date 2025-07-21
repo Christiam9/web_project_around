@@ -11,8 +11,8 @@ let profileRole = document.querySelector(".profile__role");
 let formElement = document.querySelector(".popup__container");
 
 butEdit.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileRole.textContent;
+  nameInput.value = "";
+  jobInput.value = "";
   popup.classList.add("popup_opened");
 });
 
