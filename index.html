@@ -16,7 +16,7 @@
   <body>
     <div class="page">
       <div class="popup">
-        <button type="button" class="popup__button popup__button_close">
+        <button type="button" class="popup__button popup__button-close">
           X
         </button>
         <form action="" class="popup__container">
@@ -24,17 +24,17 @@
           <fieldset class="popup__content">
             <input
               type="text"
-              class="popup__input popup__input_name"
+              class="popup__input popup__input-name"
               placeholder="Nombre"
             />
             <input
               type="text"
-              class="popup__input popup__input_about"
+              class="popup__input popup__input-about"
               placeholder="Acerca de mi"
             />
           </fieldset>
           <fieldset class="popup__content">
-            <button type="submit" class="popup__button popup__button_save">
+            <button type="submit" class="popup__button popup__button-save">
               Guardar
             </button>
           </fieldset>
@@ -54,16 +54,19 @@
               class="profile__avatar"
             />
             <div class="profile__details">
-              <h2 class="profile__name">Jacques Cousteau</h2>
+              <div class="profile__title">
+                <h2 class="profile__name">Jacques Cousteau</h2>
+                <button
+                  class="profile__edit profile__edit-btn"
+                  aria-label="Editar perfil"
+                ></button>
+              </div>
               <p class="profile__role">Explorador</p>
             </div>
-            <button
-              class="profile__edit profile__edit_btn"
-              aria-label="Editar perfil"
-            ></button>
           </div>
+
           <button
-            class="profile__add profile__add_btn"
+            class="profile__add profile__add-btn"
             aria-label="Agregar lugar"
           ></button>
         </section>

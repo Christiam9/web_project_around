@@ -28,7 +28,7 @@
   opacity: 0.5;
 }
 
-.popup__button_close {
+.popup__button-close {
   position: absolute;
   top: 30px;
   right: 30px;
@@ -72,7 +72,7 @@
   border-bottom: 1px solid #000;
 }
 
-.popup__button_save {
+.popup__button-save {
   width: 100%;
   background-color: #000;
   padding: 10px;
@@ -134,7 +134,7 @@
     margin: 0;
   }
 
-  .popup__button_save {
+  .popup__button-save {
     background-color: #000;
     color: #fff;
     padding: 12px;
@@ -145,7 +145,7 @@
     width: 100%;
   }
 
-  .popup__button_close {
+  .popup__button-close {
     position: absolute;
     top: 12px;
     right: 12px;

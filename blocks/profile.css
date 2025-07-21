@@ -19,6 +19,12 @@
   flex-grow: 1;
 }
 
+.profile__title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .profile__avatar {
   width: 60px;
   height: 60px;
@@ -38,7 +44,7 @@
   font-size: 14px;
   color: #aaa;
 }
-.profile__add_btn {
+.profile__add-btn {
   width: 150px;
   height: 50px;
   background: url("../button/add-button.png") no-repeat center;
@@ -47,7 +53,7 @@
   cursor: pointer;
 }
 
-.profile__edit_btn {
+.profile__edit-btn {
   width: 24px;
   height: 24px;
   background: url("../button/edit-button.png") no-repeat;
@@ -62,17 +68,21 @@
     text-align: center;
   }
 
+  .profile__info {
+    flex-direction: column;
+  }
+
   .profile__user {
     flex-direction: column;
     align-items: center;
     gap: 8px;
   }
-  .profile__edit_btn {
+  .profile__edit-btn {
     width: 24px;
     height: 24px;
     margin-left: 8px;
   }
-  .profile__add_btn {
+  .profile__add-btn {
     width: 100%;
     max-width: 300px;
     height: 48px;
