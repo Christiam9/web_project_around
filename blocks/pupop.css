@@ -40,7 +40,7 @@
   z-index: 11;
 }
 
-.popup__container {
+.popup__form {
   max-width: 430px;
   background-color: #fff;
   border-radius: 10px;
@@ -99,7 +99,7 @@
     display: flex;
   }
 
-  .popup__container {
+  .popup__form {
     width: 282px;
     padding: 20px;
     border-radius: 10px;
