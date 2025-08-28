@@ -36,6 +36,11 @@
   overflow: hidden;
 }
 
+.gallery__like-btn_active {
+  filter: invert(27%) sepia(94%) saturate(7475%) hue-rotate(357deg)
+    brightness(94%) contrast(112%);
+}
+
 .gallery__like-btn {
   width: 21px;
   height: 19px;
@@ -43,6 +48,7 @@
   background-size: cover;
   border: none;
   cursor: pointer;
+  transition: filter 0.3s ease;
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
@@ -55,4 +61,26 @@
   .gallery__title {
     font-size: 14px;
   }
+}
+
+.gallery__item {
+  position: relative; /* necesario para que el botón se posicione respecto a la tarjeta */
+}
+
+.gallery__delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background: url("../button/trash-bin.png") no-repeat center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  filter: brightness(0) invert(1);
+}
+
+.gallery__delete-btn:hover {
+  opacity: 0.5;
 }

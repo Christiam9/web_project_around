@@ -82,10 +82,20 @@ function createCard(title, link) {
 
   const image = card.querySelector(".gallery__image");
   const caption = card.querySelector(".gallery__title");
+  const deleteBtn = card.querySelector(".gallery__delete-btn");
+  const likeBtn = card.querySelector(".gallery__like-btn");
 
   image.src = link;
   image.alt = title;
   caption.textContent = title;
+
+  deleteBtn.addEventListener("click", () => {
+    card.remove();
+  });
+
+  likeBtn.addEventListener("click", () => {
+    likeBtn.classList.toggle("gallery__like-btn_active");
+  });
 
   return card;
 }
