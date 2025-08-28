@@ -75,6 +75,20 @@ const initialCards = [
   },
 ];
 
+const popupImage = document.querySelector(".popup_type_image");
+const popupImageContent = popupImage.querySelector(".popup__image");
+const popupImageCaption = popupImage.querySelector(".popup__caption");
+const popupImageClose = popupImage.querySelector(".popup__close-btn");
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+}
+
+popupImageClose.addEventListener("click", () => closePopup(popupImage));
 function createCard(title, link) {
   const card = templateCard.content
     .querySelector(".gallery__item")
@@ -95,6 +109,13 @@ function createCard(title, link) {
 
   likeBtn.addEventListener("click", () => {
     likeBtn.classList.toggle("gallery__like-btn_active");
+  });
+
+  image.addEventListener("click", () => {
+    popupImageContent.src = link;
+    popupImageContent.alt = title;
+    popupImageCaption.textContent = title;
+    openPopup(popupImage);
   });
 
   return card;

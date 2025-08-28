@@ -64,7 +64,7 @@
 }
 
 .gallery__item {
-  position: relative; /* necesario para que el botón se posicione respecto a la tarjeta */
+  position: relative;
 }
 
 .gallery__delete-btn {

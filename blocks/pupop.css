@@ -1,6 +1,6 @@
 .popup {
   display: none;
-  width: 880px;
+  width: 100%;
   height: 100%;
   top: 0;
   left: 0;
@@ -79,6 +79,49 @@
   margin-bottom: 40px;
 }
 
+/* --- Popup de imagen --- */
+.popup_type_image .popup__content {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.popup__image {
+  max-width: 90vw;
+  max-height: 75vh;
+  border-radius: 8px;
+}
+
+/* Botón cerrar arriba a la derecha */
+.popup_type_image .popup__close-btn {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  background: url("../button/x.png") no-repeat center;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Título de la imagen abajo a la izquierda */
+.popup__caption {
+  margin-top: 8px;
+  width: 291px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #fff;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 @media screen and (max-width: 600px) {
   .popup {
     top: 0;
