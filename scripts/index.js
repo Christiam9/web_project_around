@@ -36,14 +36,17 @@ let formPlace = popupPlace.querySelector(".popup__form");
 let titleInput = formPlace.querySelector(".popup__input-title");
 let linkInput = formPlace.querySelector(".popup__input-link");
 
+function handleClosePlace() {
+  popupPlace.classList.remove("popup_opened");
+  closeBtnPlace.removeEventListener("click", handleClosePlace);
+}
+
 butAdd.addEventListener("click", () => {
   formPlace.reset();
   popupPlace.classList.add("popup_opened");
+  closeBtnPlace.addEventListener("click", handleClosePlace);
 });
 
-closeBtnPlace.addEventListener("click", () => {
-  popupPlace.classList.remove("popup_opened");
-});
 // ---galeria de tarjetas---
 const templateCard = document.querySelector("#template-card");
 const sectionGallery = document.querySelector(".gallery__list");
