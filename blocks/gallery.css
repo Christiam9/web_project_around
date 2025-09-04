@@ -7,6 +7,7 @@
 }
 
 .gallery__item {
+  position: relative;
   background-color: #1a1a1a;
   border-radius: 12px;
   overflow: hidden;
@@ -61,10 +62,6 @@
   .gallery__title {
     font-size: 14px;
   }
-}
-
-.gallery__item {
-  position: relative;
 }
 
 .gallery__delete-btn {
