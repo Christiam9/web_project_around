@@ -25,45 +25,6 @@ function handleProfileFormSubmit(evt) {
 
   popupEdit.classList.remove("popup_opened");
 }
-const saveButton = popupEdit.querySelector(".popup__button-save");
-
-function checkInputValidity(inputElement) {
-  const errorElement = document.querySelector(`#${inputElement.id}-validation`);
-  if (!inputElement.validity.valid) {
-    errorElement.textContent = inputElement.validationMessage;
-    inputElement.classList.add("popup__input_error");
-  } else {
-    errorElement.textContent = "";
-    inputElement.classList.remove("popup__input_error");
-  }
-}
-
-function toggleButtonState(form) {
-  const isFormValid = form.checkValidity();
-  if (isFormValid) {
-    saveButton.removeAttribute("disabled");
-    saveButton.classList.remove("popup__button_disabled");
-  } else {
-    saveButton.setAttribute("disabled", true);
-    saveButton.classList.add("popup__button_disabled");
-  }
-}
-
-// Escucha los cambios de los campos
-[nameInput, jobInput].forEach((input) => {
-  input.addEventListener("input", () => {
-    checkInputValidity(input);
-    toggleButtonState(formEdit);
-  });
-});
-
-// Estado inicial al abrir el popup
-butEdit.addEventListener("click", () => {
-  nameInput.value = "";
-  jobInput.value = "";
-  popupEdit.classList.add("popup_opened");
-  toggleButtonState(formEdit); // Desactiva el botón al abrir
-});
 
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 
@@ -86,35 +47,6 @@ butAdd.addEventListener("click", () => {
   closeBtnPlace.addEventListener("click", handleClosePlace);
 });
 
-const saveButtonPlace = popupPlace.querySelector(".popup__button-save");
-const titleError = document.getElementById("title-validation");
-const linkError = document.getElementById("link-validation");
-
-function checkPlaceFormValidity() {
-  const isTitleValid = titleInput.validity.valid;
-  const isLinkValid = linkInput.validity.valid;
-
-  titleError.textContent = isTitleValid ? "" : titleInput.validationMessage;
-  linkError.textContent = isLinkValid ? "" : linkInput.validationMessage;
-
-  if (isTitleValid && isLinkValid) {
-    saveButtonPlace.disabled = false;
-    saveButtonPlace.classList.remove("popup__button_disabled");
-  } else {
-    saveButtonPlace.disabled = true;
-    saveButtonPlace.classList.add("popup__button_disabled");
-  }
-}
-
-titleInput.addEventListener("input", checkPlaceFormValidity);
-linkInput.addEventListener("input", checkPlaceFormValidity);
-
-butAdd.addEventListener("click", () => {
-  titleError.textContent = "";
-  linkError.textContent = "";
-  saveButtonPlace.disabled = true;
-  saveButtonPlace.classList.add("popup__button_disabled");
-});
 // ---galeria de tarjetas---
 const templateCard = document.querySelector("#template-card");
 const sectionGallery = document.querySelector(".gallery__list");
@@ -234,4 +166,13 @@ formPlace.addEventListener("submit", (evt) => {
 
   popupPlace.classList.remove("popup_opened");
   formPlace.reset();
+});
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
 });
