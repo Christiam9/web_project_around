@@ -25,6 +25,45 @@ function handleProfileFormSubmit(evt) {
 
   popupEdit.classList.remove("popup_opened");
 }
+const saveButton = popupEdit.querySelector(".popup__button-save");
+
+function checkInputValidity(inputElement) {
+  const errorElement = document.querySelector(`#${inputElement.id}-validation`);
+  if (!inputElement.validity.valid) {
+    errorElement.textContent = inputElement.validationMessage;
+    inputElement.classList.add("popup__input_error");
+  } else {
+    errorElement.textContent = "";
+    inputElement.classList.remove("popup__input_error");
+  }
+}
+
+function toggleButtonState(form) {
+  const isFormValid = form.checkValidity();
+  if (isFormValid) {
+    saveButton.removeAttribute("disabled");
+    saveButton.classList.remove("popup__button_disabled");
+  } else {
+    saveButton.setAttribute("disabled", true);
+    saveButton.classList.add("popup__button_disabled");
+  }
+}
+
+// Escucha los cambios de los campos
+[nameInput, jobInput].forEach((input) => {
+  input.addEventListener("input", () => {
+    checkInputValidity(input);
+    toggleButtonState(formEdit);
+  });
+});
+
+// Estado inicial al abrir el popup
+butEdit.addEventListener("click", () => {
+  nameInput.value = "";
+  jobInput.value = "";
+  popupEdit.classList.add("popup_opened");
+  toggleButtonState(formEdit); // Desactiva el botón al abrir
+});
 
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 
@@ -47,6 +86,35 @@ butAdd.addEventListener("click", () => {
   closeBtnPlace.addEventListener("click", handleClosePlace);
 });
 
+const saveButtonPlace = popupPlace.querySelector(".popup__button-save");
+const titleError = document.getElementById("title-validation");
+const linkError = document.getElementById("link-validation");
+
+function checkPlaceFormValidity() {
+  const isTitleValid = titleInput.validity.valid;
+  const isLinkValid = linkInput.validity.valid;
+
+  titleError.textContent = isTitleValid ? "" : titleInput.validationMessage;
+  linkError.textContent = isLinkValid ? "" : linkInput.validationMessage;
+
+  if (isTitleValid && isLinkValid) {
+    saveButtonPlace.disabled = false;
+    saveButtonPlace.classList.remove("popup__button_disabled");
+  } else {
+    saveButtonPlace.disabled = true;
+    saveButtonPlace.classList.add("popup__button_disabled");
+  }
+}
+
+titleInput.addEventListener("input", checkPlaceFormValidity);
+linkInput.addEventListener("input", checkPlaceFormValidity);
+
+butAdd.addEventListener("click", () => {
+  titleError.textContent = "";
+  linkError.textContent = "";
+  saveButtonPlace.disabled = true;
+  saveButtonPlace.classList.add("popup__button_disabled");
+});
 // ---galeria de tarjetas---
 const templateCard = document.querySelector("#template-card");
 const sectionGallery = document.querySelector(".gallery__list");
@@ -90,6 +158,24 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
+// Cerrar popups haciendo click en la superposición
+document.querySelectorAll(".popup").forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === popup) {
+      closePopup(popup);
+    }
+  });
+});
+
+// Cerrar popup con la tecla ESC
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    const popupAbierto = document.querySelector(".popup.popup_opened");
+    if (popupAbierto) {
+      closePopup(popupAbierto);
+    }
+  }
+});
 
 popupImageClose.addEventListener("click", () => closePopup(popupImage));
 function createCard(title, link) {

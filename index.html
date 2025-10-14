@@ -16,22 +16,36 @@
   <body>
     <div class="page">
       <div class="popup" id="popup-edit">
-        <button type="button" class="popup__button popup__button-close">
-          X
-        </button>
         <form action="" class="popup__form">
+          <button type="button" class="popup__button popup__button-close">
+            X
+          </button>
           <h2 class="popup__subtitle">Editar perfil</h2>
           <fieldset class="popup__content">
             <input
               type="text"
+              id="name"
+              required
+              minlength="2"
+              maxlength="40"
               class="popup__input popup__input-name"
               placeholder="Nombre"
             />
+            <div class="validation-name">
+              <p class="text-error" id="name-validation"></p>
+            </div>
             <input
               type="text"
+              id="about"
+              required
+              minlength="2"
+              maxlength="200"
               class="popup__input popup__input-about"
               placeholder="Acerca de mi"
             />
+            <div class="validation-about">
+              <p class="text-error" id="about-validation"></p>
+            </div>
           </fieldset>
           <fieldset class="popup__content">
             <button type="submit" class="popup__button popup__button-save">
@@ -41,25 +55,41 @@
         </form>
       </div>
       <div class="popup" id="popup-place">
-        <button type="button" class="popup__button popup__button-close">
-          X
-        </button>
         <form action="" class="popup__form" id="form-place">
+          <button type="button" class="popup__button popup__button-close">
+            X
+          </button>
           <h2 class="popup__subtitle">Nuevo Lugar</h2>
           <fieldset class="popup__content">
             <input
               type="text"
+              id="title"
+              required
+              minlength="2"
+              maxlength="30"
               class="popup__input popup__input-title"
-              placeholder="Title"
+              placeholder="Título"
             />
+            <div class="validation-title">
+              <p class="text-error" id="title-validation"></p>
+            </div>
             <input
-              type="text"
+              type="url"
+              id="link"
+              required
               class="popup__input popup__input-link"
-              placeholder="URL Image"
+              placeholder="URL de la Imagen"
             />
+            <div class="validation-link">
+              <p class="text-error" id="link-validation"></p>
+            </div>
           </fieldset>
           <fieldset class="popup__content">
-            <button type="submit" class="popup__button popup__button-save">
+            <button
+              type="submit"
+              class="popup__button popup__button-save popup__button_disabled"
+              disabled
+            >
               Crear
             </button>
           </fieldset>
