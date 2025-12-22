@@ -1,6 +1,8 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { openPopup, closePopup, setOverlayAndEscClose } from "./utils.js";
+import Popup from "./Popup.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 // --- Configuración de validación ---
 const validationConfig = {
@@ -59,12 +61,9 @@ butAdd.addEventListener("click", () => {
 closeBtnPlace.addEventListener("click", () => closePopup(popupPlace));
 
 // --- Popup de Imagen ---
-const popupImage = document.querySelector(".popup_type_image");
-const popupImageContent = popupImage.querySelector(".popup__image");
-const popupImageCaption = popupImage.querySelector(".popup__caption");
-const popupImageClose = popupImage.querySelector(".popup__close-btn");
+const imagePopup = new PopupWithImage(".popup_type_image");
 
-popupImageClose.addEventListener("click", () => closePopup(popupImage));
+imagePopup.setEventListeners();
 
 // --- Renderizar tarjetas ---
 const sectionGallery = document.querySelector(".gallery__list");
@@ -80,10 +79,7 @@ const initialCards = [
 ];
 
 function handleImageClick(name, link) {
-  popupImageContent.src = link;
-  popupImageContent.alt = name;
-  popupImageCaption.textContent = name;
-  openPopup(popupImage);
+  imagePopup.open({ name, link });
 }
 
 // Agregar tarjetas iniciales
