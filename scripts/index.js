@@ -1,8 +1,9 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { openPopup, closePopup, setOverlayAndEscClose } from "./utils.js";
-import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import { setOverlayAndEscClose } from "./utils.js";
+import UserInfo from "./UserInfo.js";
 
 // --- Configuración de validación ---
 const validationConfig = {
@@ -20,54 +21,62 @@ forms.forEach((form) => {
   validator.enableValidation();
 });
 
-// --- Popup Editar Perfil ---
-const butEdit = document.querySelector(".profile__edit-btn");
-const popupEdit = document.querySelector("#popup-edit");
-const closeBtn = popupEdit.querySelector(".popup__button-close");
-const nameInput = popupEdit.querySelector(".popup__input-name");
-const jobInput = popupEdit.querySelector(".popup__input-about");
-const profileName = document.querySelector(".profile__name");
-const profileRole = document.querySelector(".profile__role");
-const formEdit = popupEdit.querySelector(".popup__form");
+// --- Elementos principales ---
+const sectionGallery = document.querySelector(".gallery__list");
+const templateSelector = "#template-card";
 
-butEdit.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileRole.textContent;
-  openPopup(popupEdit);
+// --- Instancias ---
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  jobSelector: ".profile__role",
 });
 
-closeBtn.addEventListener("click", () => closePopup(popupEdit));
+// --- Popup editar perfil ---
+const editProfilePopup = new PopupWithForm("#popup-edit", (formData) => {
+  userInfo.setUserInfo(formData);
+});
 
-formEdit.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileRole.textContent = jobInput.value;
-  closePopup(popupEdit);
+editProfilePopup.setEventListeners();
+
+const butEdit = document.querySelector(".profile__edit-btn");
+
+butEdit.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  editProfilePopup.setInputValues(userData);
+  editProfilePopup.open();
 });
 
 // --- Popup Agregar Lugar ---
-const butAdd = document.querySelector(".profile__add-btn");
-const popupPlace = document.querySelector("#popup-place");
-const closeBtnPlace = popupPlace.querySelector(".popup__button-close");
-const formPlace = popupPlace.querySelector(".popup__form");
-const titleInput = formPlace.querySelector(".popup__input-title");
-const linkInput = formPlace.querySelector(".popup__input-link");
+const addPlacePopup = new PopupWithForm("#popup-place", (formData) => {
+  const card = new Card(
+    {
+      name: formData.title,
+      link: formData.link,
+    },
+    templateSelector,
+    handleImageClick
+  );
 
-butAdd.addEventListener("click", () => {
-  formPlace.reset();
-  openPopup(popupPlace);
+  const cardElement = card.generateCard();
+  sectionGallery.prepend(cardElement);
 });
 
-closeBtnPlace.addEventListener("click", () => closePopup(popupPlace));
+addPlacePopup.setEventListeners();
+
+// --- Botones que abren popups ---
+const butAdd = document.querySelector(".profile__add-btn");
+
+butAdd.addEventListener("click", () => {
+  addPlacePopup.open();
+});
 
 // --- Popup de Imagen ---
 const imagePopup = new PopupWithImage(".popup_type_image");
-
 imagePopup.setEventListeners();
 
-// --- Renderizar tarjetas ---
-const sectionGallery = document.querySelector(".gallery__list");
-const templateSelector = "#template-card";
+function handleImageClick(name, link) {
+  imagePopup.open({ name, link });
+}
 
 const initialCards = [
   { name: "Isla de Galápagos", link: "./images/islagalapagos.jpg" },
@@ -78,32 +87,11 @@ const initialCards = [
   { name: "Arrecifes de coral", link: "./images/arrecifes de coral.jpg" },
 ];
 
-function handleImageClick(name, link) {
-  imagePopup.open({ name, link });
-}
-
 // Agregar tarjetas iniciales
 initialCards.forEach((item) => {
   const card = new Card(item, templateSelector, handleImageClick);
   const cardElement = card.generateCard();
   sectionGallery.append(cardElement);
-});
-
-// --- Agregar nuevas tarjetas ---
-formPlace.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  const data = {
-    name: titleInput.value,
-    link: linkInput.value,
-  };
-
-  const card = new Card(data, templateSelector, handleImageClick);
-  const cardElement = card.generateCard();
-  sectionGallery.prepend(cardElement);
-
-  closePopup(popupPlace);
-  formPlace.reset();
 });
 
 // --- Activar cierre con overlay y tecla ESC ---
