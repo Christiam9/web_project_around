@@ -45,7 +45,7 @@
 .gallery__like-btn {
   width: 21px;
   height: 19px;
-  background: url("../button/Vector.png") no-repeat center;
+  background: url("../images/button/Vector.png") no-repeat center;
   background-size: cover;
   border: none;
   cursor: pointer;
@@ -70,7 +70,7 @@
   right: 10px;
   width: 24px;
   height: 24px;
-  background: url("../button/trash-bin.png") no-repeat center;
+  background: url("../images/button/trash-bin.png") no-repeat center;
   background-size: contain;
   border: none;
   cursor: pointer;
